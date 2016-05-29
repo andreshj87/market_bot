@@ -19,7 +19,8 @@ module MarketBot
           result = {}
           result[:author] = review.at_css('.author-name').text.strip
           result[:date] = Date.parse(review.at_css('.review-date').text.strip)
-          result[:review] = review.at_css('.review-body').text.strip.gsub(/\s+Full Review/,'')
+          result[:title] = review.at_css('.review-title').text.strip
+          result[:review] = review.at_css('.review-body').children[2].text.strip
           review.at_css('.star-rating-non-editable-container')['aria-label'].match(/(\d)/)
           result[:rating] = $1
           result[:uid] = review.at_css('.review-header')['data-reviewid']
