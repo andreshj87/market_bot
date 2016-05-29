@@ -32,14 +32,17 @@ module MarketBot
         @package = app.package
       end
 
-      def update
-        req = Typhoeus::Request.new('https://play.google.com/store/getreviews?authuser=0',
-          method: :post,
+      def update(user_opts = {})
+        options = {method: :post,
           params: {id: @package,
             reviewSortOrder: 0,
             reviewType: 0,
             pageNum: 0,
-            xhr: 1})
+            xhr: 1}
+        }
+        req = Typhoeus::Request.new('https://play.google.com/store/getreviews?authuser=0',
+          options.merge(user_opts)
+        )
         req.run
         response_handler(req.response)
 
