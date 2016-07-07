@@ -17,7 +17,6 @@ module MarketBot
         reviews = doc.css('.single-review')
         reviews.each do |review|
           result = {}
-          result[:author_url] = 'https://play.google.com' + review.children[1]['href']
           result[:author] = review.at_css('.author-name').text.strip
           result[:date] = review.at_css('.review-date').text.strip
           result[:title] = review.at_css('.review-title').text.strip
