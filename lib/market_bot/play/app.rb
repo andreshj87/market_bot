@@ -103,6 +103,18 @@ module MarketBot
           result[:rating] = node[:content].strip
           node            = doc.at_css('meta[itemprop="ratingCount"]')
           result[:votes]  = node[:content].strip.to_i
+        else
+          if doc.css('.BHMmbe').first
+            node          = doc.css('.BHMmbe').first
+            result[:rating] = node.content.strip.to_f
+          end
+          if doc.css('.AYi5wd').first
+            node          = doc.css('.AYi5wd').first
+            result[:votes] = node.content.strip.delete(',').to_i
+          elsif doc.css('.TBRnV').first
+            node          = doc.css('.TBRnV').first
+            result[:votes] = node.content.strip.delete(',').to_i
+          end
         end
 
         a_similar = doc.at_css('a:contains("Similar")')
