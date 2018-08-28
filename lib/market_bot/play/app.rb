@@ -101,7 +101,7 @@ module MarketBot
         if doc.at_css('meta[itemprop="ratingValue"]')
           node            = doc.at_css('meta[itemprop="ratingValue"]')
           result[:rating] = node[:content].strip
-          node            = doc.at_css('meta[itemprop="ratingCount"]')
+          node            = doc.at_css('meta[itemprop="reviewCount"]')
           result[:votes]  = node[:content].strip.to_i
         else
           if doc.css('.BHMmbe').first
