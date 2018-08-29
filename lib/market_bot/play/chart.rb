@@ -102,7 +102,8 @@ module MarketBot
           r = self.class.parse(response.body, lang: @lang)
 
           begin
-            if @result.empty? || (!@result.empty? && r[0] && @result[-1][-1][:rank] + 1 == r[0][:rank])
+            if @result.empty? ||
+                (!@result.empty? &&@result[-1][-1][:rank] + 1 == r[0][:rank])
               @result << r
               return true
             end
@@ -110,7 +111,7 @@ module MarketBot
             return false
           end
 
-          false
+          return false
         else
           codes = "code=#{response.code}, return_code=#{response.return_code}"
           raise MarketBot::ResponseError, "Unhandled response: #{codes}"
