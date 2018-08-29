@@ -13,6 +13,8 @@ require 'market_bot/play/app'
 require 'market_bot/play/chart/constants'
 require 'market_bot/play/chart'
 require 'market_bot/play/developer'
+require 'market_bot/play/reviews/constants'
+require 'market_bot/play/reviews'
 
 module MarketBot
   def self.timeout
